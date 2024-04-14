@@ -2,11 +2,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Gibbet gibbet = new Gibbet();
-        gibbet.setCurState(0);
+//        Gibbet gibbet = new Gibbet();
+//        gibbet.setCurState(0);
 
-
-        System.out.println(gibbet.getCurStateStr());
+//        WordChooser.removeShortWords();
+       String word =  WordChooser.getRandomWord();
+        System.out.println(word);
+//        System.out.println(gibbet.getCurStateStr());
 
 
     }
