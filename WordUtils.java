@@ -3,12 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class WordChooser {
+public class WordUtils {
 
     public static int minWordLength = 6;
     public static String srcFileName = "words_orig.txt";
     public static String targetFileName = "words.txt";
     private static final ArrayList<String> wordList = new ArrayList<>();
+    public static final String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 
     // функция для удаления из исходного словаря слов короче minWordLength,
@@ -27,6 +28,25 @@ public class WordChooser {
         }
         catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+
+
+    public static boolean isValidSymbol(String symbol) {
+        if (symbol == null) {
+            System.out.println("Letter is null");
+            return false;
+        } else if (symbol.length() > 1) {
+            System.out.println("There are more than 1 letter");
+            return false;
+        } else if (!alphabet.contains(symbol)) {
+            System.out.println("Symbol:'" + symbol + "' is not a letter of alphabet");
+            return false;
+        }
+        else {
+//            System.out.println("Valid letter");
+            return true;
         }
     }
 
@@ -59,6 +79,20 @@ public class WordChooser {
 
     }
 
+
+    public static String getPartOfWord(String word, List<Character> shownLetters){
+        StringBuilder resultString = new StringBuilder();
+        char[] wordArr = word.toCharArray();
+
+        for (char c : wordArr) {
+            if (shownLetters.contains(c)) {
+                resultString.append(c);
+            } else {
+                resultString.append("_");
+            }
+        }
+        return resultString.toString();
+    }
 
 
 }
