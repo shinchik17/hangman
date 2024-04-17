@@ -35,13 +35,13 @@ public class WordUtils {
 
     public static boolean isValidSymbol(String symbol) {
         if (symbol == null) {
-            System.out.println("Letter is null");
+//            System.out.println("Letter is null");
             return false;
         } else if (symbol.length() > 1) {
-            System.out.println("There are more than 1 letter");
+//            System.out.println("There are more than 1 letter");
             return false;
         } else if (!alphabet.contains(symbol)) {
-            System.out.println("Symbol:'" + symbol + "' is not a letter of alphabet");
+//            System.out.println("Symbol:'" + symbol + "' is not a letter of alphabet");
             return false;
         }
         else {
@@ -53,7 +53,8 @@ public class WordUtils {
 
     public static String getRandomWord(){
         if (!wordList.isEmpty()){
-            int randomIdx = new Random(wordList.size()).nextInt();
+//            Random rnd = new Random();
+            int randomIdx = (new Random()).nextInt(wordList.size());
             return wordList.get(randomIdx);
         }
 
@@ -77,6 +78,20 @@ public class WordUtils {
             return null;
         }
 
+    }
+
+    public static boolean listContainsAllLettersOfString(String s, List<Character> list){
+        if (s.isEmpty()) {
+            System.out.println("String is empty");
+            return false;}
+
+        for(char chr: s.toCharArray()) {
+            if (!list.contains(chr)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 

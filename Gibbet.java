@@ -1,8 +1,10 @@
 public class Gibbet {
 
     private int curState = 0;
-    private String[] gibbetStates = {zero, first, second, third, fourth, fifth, sixth};
+    private final String[] gibbetStates = {zero, first, second, third, fourth, fifth, sixth};
     private String curStateStr = gibbetStates[curState];
+    private boolean isFinalState = false;
+    private final int numStates = gibbetStates.length - 1;
 
     public static final String zero = """
             ______
@@ -62,6 +64,10 @@ public class Gibbet {
             setCurState(getCurState() + 1);
             setCurStateStr();
         }
+        if (curState == gibbetStates.length - 1){
+             setFinalState(true);
+        }
+
     }
 
     public int getCurState() {
@@ -79,5 +85,17 @@ public class Gibbet {
 
     public void setCurStateStr() {
         this.curStateStr = gibbetStates[curState];
+    }
+
+    public boolean isFinalState() {
+        return isFinalState;
+    }
+
+    private void setFinalState(boolean finalState) {
+        isFinalState = finalState;
+    }
+
+    public int getNumStates() {
+        return numStates;
     }
 }
