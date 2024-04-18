@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Random;
 
 public class WordUtils {
@@ -35,19 +35,10 @@ public class WordUtils {
 
     public static boolean isValidSymbol(String symbol) {
         if (symbol == null) {
-//            System.out.println("Letter is null");
             return false;
         } else if (symbol.length() > 1) {
-//            System.out.println("There are more than 1 letter");
             return false;
-        } else if (!alphabet.contains(symbol)) {
-//            System.out.println("Symbol:'" + symbol + "' is not a letter of alphabet");
-            return false;
-        }
-        else {
-//            System.out.println("Valid letter");
-            return true;
-        }
+        } else return alphabet.contains(symbol);
     }
 
 
@@ -70,7 +61,6 @@ public class WordUtils {
         }
 
         if (!wordList.isEmpty()) {
-            int size = wordList.size();
             int randomIdx = new Random().nextInt(wordList.size());
             return wordList.get(randomIdx);
         }
@@ -80,7 +70,7 @@ public class WordUtils {
 
     }
 
-    public static boolean listContainsAllLettersOfString(String s, List<Character> list){
+    public static boolean listContainsAllLettersOfString(String s, Collection<Character> list){
         if (s.isEmpty()) {
             System.out.println("String is empty");
             return false;}
@@ -95,7 +85,7 @@ public class WordUtils {
     }
 
 
-    public static String getPartOfWord(String word, List<Character> shownLetters){
+    public static String getPartOfWord(String word, Collection<Character> shownLetters){
         StringBuilder resultString = new StringBuilder();
         char[] wordArr = word.toCharArray();
 
@@ -103,7 +93,7 @@ public class WordUtils {
             if (shownLetters.contains(c)) {
                 resultString.append(c);
             } else {
-                resultString.append("_");
+                resultString.append("*");
             }
         }
         return resultString.toString();

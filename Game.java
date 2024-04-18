@@ -1,13 +1,10 @@
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
 
-    private String wordToGuess;
-    private ArrayList<Character> userAnswers = new ArrayList<>();
+    private final String wordToGuess;
+    private final HashSet<Character> userAnswers = new HashSet<>();
 
 
     public Game(String wordToGuess) {
@@ -16,7 +13,7 @@ public class Game {
 
 
     public void play() {
-        System.out.println(String.format("Начнём! В слове %d букв", wordToGuess.length()));
+        System.out.printf("Начнём! В слове %d букв%n", wordToGuess.length());
         Scanner scanner = new Scanner(System.in);
         Gibbet gibbet = new Gibbet();
 
@@ -49,8 +46,8 @@ public class Game {
                 // нет такой буквы, её ещё НЕ вводили (+счётчик)
                 userAnswers.add(charLetter);
                 gibbet.addState();
-                System.out.println(String.format("Нет такой буквы! Кол-во ошибок: %d/%d",
-                        gibbet.getCurState(), gibbet.getNumStates()));
+                System.out.printf("Нет такой буквы! Кол-во ошибок: %d/%d%n",
+                        gibbet.getCurState(), gibbet.getNumStates());
                 System.out.println(gibbet.getCurStateStr());
 //                System.out.println(WordUtils.getPartOfWord(wordToGuess, userAnswers));
             }
@@ -62,19 +59,13 @@ public class Game {
                 System.out.println("Ты проиграл! Загаданное слово: " + wordToGuess + "\n");
                 break;
             }
-            System.out.println(WordUtils.getPartOfWord(wordToGuess, userAnswers));
 
+            System.out.print("\nТы использовал буквы: ");
+            userAnswers.stream().map(x -> x + ", ").forEach(System.out::print);
+            System.out.println("\n" + WordUtils.getPartOfWord(wordToGuess, userAnswers));
 
 
         }
     }
 
-
-    public String getWordToGuess() {
-        return wordToGuess;
-    }
-
-    public void setWordToGuess(String wordToGuess) {
-        this.wordToGuess = wordToGuess;
-    }
 }
